@@ -12,6 +12,7 @@ RUN apt-get update -y && apt-get upgrade -y
 # * Bootstrap Pencil Stencils: https://github.com/nathanielw/Bootstrap-Pencil-Stencils/
 
 RUN apt-get install -y wget firefox && \
+    apt-get install -y gtk2-engines-murrine gtk2-engines-pixbuf && \
     cd && \
     wget https://github.com/prikhi/pencil/releases/download/v2.0.14/pencil-2.0.14-ubuntu-all.deb && \
     dpkg -i pencil-2.0.14-ubuntu-all.deb && \

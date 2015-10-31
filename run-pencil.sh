@@ -5,5 +5,6 @@ docker run \
     -e GID=$(id -g) \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v ${HOME}:/home/raptor \
-    docker-pencil-mock
+    -v /usr/share/themes/:/usr/share/themes:ro \
+    bmst/pencil
 
