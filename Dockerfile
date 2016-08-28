@@ -1,8 +1,6 @@
 FROM ubuntu:14.04
 MAINTAINER Bogdan Mustiata <bogdan.mustiata@gmail.com>
 
-RUN apt-get update -y && apt-get upgrade -y
-
 #
 # This is just a default install of the pencil, with the following addons already available
 # for installation (in the /extra/ folder):
@@ -11,20 +9,26 @@ RUN apt-get update -y && apt-get upgrade -y
 # * Android Lollipop Pencil Stencils: https://github.com/nathanielw/Android-Lollipop-Pencil-Stencils/
 # * Bootstrap Pencil Stencils: https://github.com/nathanielw/Bootstrap-Pencil-Stencils/
 
-RUN apt-get install -y wget firefox && \
-    apt-get install -y gtk2-engines-murrine gtk2-engines-pixbuf && \
+RUN apt-get update -y && apt-get upgrade -y && \
+    apt-get install -y libgtk-3-0 libasound2 libdbus-glib-1-2 libxt6 wget gtk2-engines-murrine gtk2-engines-pixbuf && \
+    cd /opt && \
+    wget 'https://download.mozilla.org/?product=firefox-46.0-SSL&os=linux64&lang=en-US' -O firefox.tar.bz2 && \
+    tar -jxvf firefox.tar.bz2 && \
+    rm /opt/firefox.tar.bz2 && \
     cd && \
-    wget https://github.com/prikhi/pencil/releases/download/v2.0.14/pencil-2.0.14-ubuntu-all.deb && \
-    dpkg -i pencil-2.0.14-ubuntu-all.deb && \
-    useradd -m raptor && \
+    wget https://github.com/prikhi/pencil/releases/download/v2.0.18/Pencil-2.0.18-linux-pkg.tar.gz && \
+    cd / && \
+    tar -zxvf /root/Pencil-2.0.18-linux-pkg.tar.gz --strip 1 && \
     mkdir /extra && \
     cd /extra && \
     wget https://github.com/nathanielw/Android-Lollipop-Pencil-Stencils/releases/download/v1.0.0/android-lollipop-pencil-stencils-v1.0.0.zip && \
     wget https://github.com/nathanielw/Bootstrap-Pencil-Stencils/releases/download/v1.1.0/bootstrap-pencil-stencils-v1.1.0.zip && \
     wget https://github.com/nathanielw/Material-Icons-for-Pencil/releases/download/v1.1.0/material-icons-for-pencil-v1.1.0.zip && \
     wget https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip && \
-    chmod 755 /extra
+    chmod 755 /extra && \
+    useradd -m raptor
 
+ENV PATH /opt/firefox:$PATH
 ENV DISPLAY=:0
 ENV UID=1000
 ENV GID=1000
@@ -34,5 +38,5 @@ CMD perl -pi -e "s/raptor:x:1000:1000/raptor:x:$UID:$GID/" /etc/passwd && \
 
 USER raptor
 
-CMD pencil
+CMD ["sh", "-c", "/usr/bin/pencil"]
 
