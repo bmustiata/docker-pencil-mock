@@ -16,14 +16,14 @@ RUN apt-get update -y && apt-get upgrade -y && \
     tar -jxvf firefox.tar.bz2 && \
     rm /opt/firefox.tar.bz2 && \
     cd && \
-    wget https://github.com/prikhi/pencil/releases/download/v2.0.18/Pencil-2.0.18-linux-pkg.tar.gz && \
+    wget https://github.com/prikhi/pencil/releases/download/v2.0.21/Pencil-2.0.21-linux-pkg.tar.gz && \
     cd / && \
-    tar -zxvf /root/Pencil-2.0.18-linux-pkg.tar.gz --strip 1 && \
+    tar -zxvf /root/Pencil-2.0.21-linux-pkg.tar.gz --strip 1 && \
     mkdir /extra && \
     cd /extra && \
-    wget https://github.com/nathanielw/Android-Lollipop-Pencil-Stencils/releases/download/v1.0.0/android-lollipop-pencil-stencils-v1.0.0.zip && \
-    wget https://github.com/nathanielw/Bootstrap-Pencil-Stencils/releases/download/v1.1.0/bootstrap-pencil-stencils-v1.1.0.zip && \
-    wget https://github.com/nathanielw/Material-Icons-for-Pencil/releases/download/v1.1.0/material-icons-for-pencil-v1.1.0.zip && \
+    wget https://github.com/nathanielw/Android-Lollipop-Pencil-Stencils/releases/download/v1.1.0/android-lollipop-pencil-stencils-v1.1.0.zip && \
+    wget https://github.com/nathanielw/Bootstrap-Pencil-Stencils/releases/download/v1.1.1/bootstrap-pencil-stencils-v1.1.1.zip && \
+    wget https://github.com/nathanielw/Material-Icons-for-Pencil/releases/download/v2.0.0/material-icons-for-pencil-v2.0.0.zip && \
     wget https://github.com/DaniGuardiola/pencil-material-template/raw/master/build/pencil-material-template-mobile.zip && \
     chmod 755 /extra && \
     useradd -m raptor
